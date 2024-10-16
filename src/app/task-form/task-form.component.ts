@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 
 export class TaskFormComponent {
-  newTask:any ='';
+  newTaskItem:any ='';
   public taskObject: any[] = []
 
   @Output() public addTask = new EventEmitter()
@@ -15,18 +15,23 @@ export class TaskFormComponent {
   onKeydown(event: KeyboardEvent) {
     
     if (event.key==='Enter') {
-      if(this.newTask && this.newTask != ' '){
+      if(this.newTaskItem && this.newTaskItem != ' '){
         this.onAddTask()
       }
     
     }
   }
+
+  capitalizeFirstLetter(arg:string) {
+    return arg.charAt(0).toUpperCase() + arg.slice(1);
+  }
   
   onAddTask(){
-    const newTask = { 'id': uuidv4(), 'newTask': this.newTask, 'isNew': true }; //uuidv4 generates unique id
-    if(this.newTask && this.newTask.trim()){
+    this.newTaskItem = this.capitalizeFirstLetter(this.newTaskItem)
+    const newTask = { 'id': uuidv4(), 'newTask': this.newTaskItem, 'isNew': true }; //uuidv4 generates unique id
+    if(this.newTaskItem && this.newTaskItem.trim()){
       this.addTask.emit(newTask)
     }
-    this.newTask=''
+    this.newTaskItem=''
   }
 }

@@ -13,9 +13,9 @@ export class AppComponent implements OnInit {
   }
 
   title = 'ToDo';
-  newTask: any = '';
-  editTask: any = '';
-  deleteTask: any = '';
+  newTask: string = '';
+  editTask: string = '';
+  deleteTask: string = '';
   public taskObject: any[] = [];
 
   isEditing: boolean = false;
@@ -26,10 +26,12 @@ export class AppComponent implements OnInit {
 
   // add button beside input form from task-form component
   //taking data (newTask) from task-form component
-  onAdd(newTask: any) {
-    this.taskObject.push(newTask);
+
+  onAdd(newTaskObj: any) {
+    
+    this.taskObject.push(newTaskObj);
     setTimeout(() => {
-      newTask.isNew = false;
+      newTaskObj.isNew = false;
       this.saveTask();
     }, 500);
   }
