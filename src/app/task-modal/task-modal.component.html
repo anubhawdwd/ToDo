@@ -1,0 +1,27 @@
+<div  class="modal-cs container col-4">
+  <div class="d-flex flex-column bg-secondary-subtle rounded p-2">
+    <div class="d-flex flex-row justify-content-between">
+      <span></span>
+      <h2 *ngIf="isEditing">Edit List</h2>
+      <h2 *ngIf="isDeleting">Delete</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModalInside()"></button>
+    </div>
+
+    <p *ngIf="isEditing" class="text-center" >Edit below Task</p>
+    <input *ngIf="isEditing" title="editTasks" type="text" name="task" id="editTask" [(ngModel)]="task" (keydown)="onKeydown($event)" >
+
+
+    <p *ngIf="isDeleting" class="text-center" >Do you want to delete this?</p>
+    <input *ngIf="isDeleting" title="deleteTask" type="text" name="deleteTask" id="deleteTask" disabled=""  value={{task}}>
+    <div class="d-flex flex-row justify-content-end pt-3 gap-2">
+      <button [ngClass]="isDeleting? 'btn btn-primary':'btn btn-danger'" (click)="closeModalInside()">Close</button>
+      <button *ngIf="isEditing" class="btn btn-primary " (click)="saveEditInside()" >Save</button>
+      <button *ngIf="isDeleting" class="btn btn-danger " (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+

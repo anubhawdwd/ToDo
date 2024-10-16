@@ -1,0 +1,17 @@
+<form #myForm="ngForm">
+  <div class="input-group input-group-lg">
+    <!-- Adjust width as needed -->
+    <span class="input-group-text bg-primary-subtle" id="inputGroup-sizing-lg"
+      >Add Task</span
+    >
+    <input
+      (keydown)="onKeydown($event)"
+      name="newtask"
+      [(ngModel)]="newTask"
+      type="text"
+      class="form-control"
+      placeholder="Enter Your Task"
+    />
+    <button type="button" class="btn btn-success" (click)="onAddTask()">Add</button>
+  </div>
+</form>

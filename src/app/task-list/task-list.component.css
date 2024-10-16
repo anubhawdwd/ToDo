@@ -1,0 +1,11 @@
+.highlight {
+    background-color: burlywood;
+    transition: background-color 2s ease-out;
+  }
+
+  table thead tr th:nth-child(2) {
+    width: 850px;
+}
+  table tbody tr td:nth-child(2) {
+    word-break: break-all;
+}
