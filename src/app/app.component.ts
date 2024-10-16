@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  
+
   ngOnInit(): void {
     this.loadTask();
   }
@@ -66,12 +68,14 @@ export class AppComponent implements OnInit {
           elem.newTask = this.editTask;
           elem.isNew = true;
           setTimeout(() => {
+            console.log("inside timeout isNew", elem.isNew);
             elem.isNew = false;
-          }, 500);
+            this.saveTask();
+          }, 300);
         }
       });
       this.newTask = '';
-      this.saveTask();
+      // this.saveTask();
       this.isEditing = false;
     } else alert('edit something then Save');
   }
@@ -91,6 +95,9 @@ export class AppComponent implements OnInit {
   }
 
   saveTask() {
+    this.taskObject = this.taskObject.map(task => {
+      return { ...task, isNew: false }; // Ensure isNew is false before saving
+    })
     localStorage.setItem('taskObject', JSON.stringify(this.taskObject));
   }
 

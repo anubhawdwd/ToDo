@@ -28,7 +28,7 @@
         <!-- Delete Mode -->
         <div *ngIf="isDeleting">
           <p class="text-center">Are you sure you want to delete this task?</p>
-          <p class="bg-light p-2">{{ task }}</p>
+          <p class="bg-light p-2" style="word-break: break-all;">{{ task }}</p>
         </div>
         <!-- RemoveAll Mode -->
         <div *ngIf="isRemovingAll">
