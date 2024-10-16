@@ -2,38 +2,34 @@
 <app-navbar />
 
 <div [ngClass]="{ 'blur-background': isEditing || isDeleting }">
-  
   <div class="d-flex justify-content-center flex-column">
-    <div class="container">
+    <div class="container p-3">
       <!-- <form #myForm="ngForm"> -->
       <app-task-form (addTask)="onAdd($event)" />
-      
-
 
       <!-- table to show todo app data  -->
-      <app-task-list *ngIf="taskObject.length"
+      <app-task-list
+        *ngIf="taskObject.length"
         [tasks]="taskObject"
         (deleteTask)="handleDelete($event)"
         (editTask)="handleEdit($event)"
+        (removeAllTask)="removeTask()"
       />
-      <!-- removeAll Button -->
-      <div class="d-flex justify-content-center" *ngIf="taskObject.length ">
-        <button class="btn btn-danger" (click)="removeTask()">Remove All</button>
-      </div>
-
-
     </div>
   </div>
 </div>
 <div>
-  <app-task-modal *ngIf="isEditing || isDeleting"
-  [task]="editTask || deleteTask"  
-  [isEditing]="isEditing"
-  [isDeleting]="isDeleting"
-  (delete)="onDelete()"
-  (save)="saveEdit($event)"
-  (close)="closeModal()">
+  <app-task-modal
+    *ngIf="isEditing || isDeleting || isRemovingAll"
+    [task]="editTask || deleteTask"
+    [isEditing]="isEditing"
+    [isDeleting]="isDeleting"
+    [isRemovingAll]="isRemovingAll"
+    (delete)="onDelete()"
+    (save)="saveEdit($event)"
+    (close)="closeModal()"
+    (removeAll)="deleteAllData()"
+  >
   </app-task-modal>
 </div>
 
-<!-- [task]="editTask || deleteTask"   -> task is editTask if editTask true or deleteTask if that is true it can have only one value -->

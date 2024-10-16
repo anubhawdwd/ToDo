@@ -11,37 +11,34 @@ export class TaskModalComponent {
 @Output() save = new EventEmitter<any>()
 @Output() delete = new EventEmitter()
 @Output() close = new EventEmitter()
+@Output() removeAll = new EventEmitter()
 @Input() isEditing:boolean=false;
 @Input() isDeleting:boolean=false;
+@Input() isRemovingAll:boolean=false;
 @Input() deleteTask:string="";
-@Input() editTask:string="";
 @Input() task:string = ""
-// @Input() saveEdit():any;
+
 
  closeModalInside(){
     this.close.emit()
   }
 
-  onSaveKeydown(event: KeyboardEvent){
-    this.saveKeydown.emit(event)
-  }
-
-  onKeydown(event: KeyboardEvent) {
+  //check if Enter is pressed then proceed to save
+  onKeydown(event: KeyboardEvent) {   
     if (event.key==='Enter') {
-      if(this.task && this.task != ' '){
+      if(this.task.length ){
         this.saveEditInside()
       }
-    
     }
   }
   saveEditInside(){
-    console.log("saveEdit", this.editTask);
     this.save.emit(this.task)
-    // this.save.emit(this.editTask)
   }
   onDelete(){
     this.delete.emit()
   }
-  
+  onRemoveAll(){
+    this.removeAll.emit()
+  }
 
 }

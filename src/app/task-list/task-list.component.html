@@ -1,21 +1,42 @@
-<div class="table-responsive-sm ">
+<div class="table-responsive-sm">
   <table class="table table-bordered mt-3 text-center">
-      <thead>
-        <tr  >
-          <th scope="col">S.No</th>
-          <th scope="col">Items</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let task of tasks; let i = index"  >
-          
-          <td [ngClass]="{'table-success': task.isNew}">{{i+1}}</td>
-          <td [ngClass]="{'table-success': task.isNew}">{{task.newTask}} </td>
-          <td [ngClass]="{'table-success': task.isNew}"><button type="button" class="btn btn-warning " (click)="handleEdit(task.id)" >Edit</button></td>
-          <td [ngClass]="{'table-success': task.isNew}"><button type="button" class="btn btn-danger" (click)="handleDelete(task.id)" >Delete</button></td>
-        </tr>
-      </tbody>
-    </table> 
+    <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Items</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks; let i = index">
+        <td [ngClass]="{ 'table-success': task.isNew }">{{ i + 1 }}</td>
+        <td [ngClass]="{ 'table-success': task.isNew }">{{ task.newTask }}</td>
+        <td [ngClass]="{ 'table-success': task.isNew }">
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="handleEdit(task.id)"
+          >
+            Edit
+          </button>
+        </td>
+        <td [ngClass]="{ 'table-success': task.isNew }">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="handleDelete(task.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- removeAll Button -->
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-danger" (click)="handleRemoveTask()">
+      Remove All
+    </button>
+  </div>
 </div>
